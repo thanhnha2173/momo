@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class NapTienActivity extends AppCompatActivity {
     TextView soduviNT;
     Button btnt;
+
+    ImageButton backLogin1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,12 @@ public class NapTienActivity extends AppCompatActivity {
                 }
             }
         });
+//        backLogin1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
     }
     private void updateToFireStore(String id, int sodu) {
         FirebaseFirestore db;
