@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/male_option"
+        android:title="Nam" />
+    <item
+        android:id="@+id/female_option"
+        android:title="Nữ" />
+    <item
+        android:id="@+id/khac_option"
+        android:title="Khác" />
+</menu>

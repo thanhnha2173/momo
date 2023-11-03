@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/LLmycar"
+    android:layout_height="match_parent"
+    android:background="#CDCACA"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".fragment.MyCarFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Xe của tôi"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:layout_marginBottom="24dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/LLCar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundedbutton"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_margin="8dp"
+        >
+        <TextView
+            android:id="@+id/tvnameCar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:hint="Tên xe"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            android:textSize="36dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvbienso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Biển số xe: "
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvdtxl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dung tích xi lanh: "
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btdatDV"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:text="Đặt dịch vụ"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textAllCaps="false" />
+
+
+</LinearLayout>

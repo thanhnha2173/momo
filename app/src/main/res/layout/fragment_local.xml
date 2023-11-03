@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDCACA"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".fragment.LocalFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Tìm đại lý"
+        android:textColor="@color/black"
+        android:layout_marginBottom="16dp"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:background="@drawable/roundedbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:id="@+id/LLlocal1"
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/baseline_android_24"
+            />
+        <TextView
+            android:id="@+id/tv1"
+            android:paddingLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VIỆT THÁI QUÂN 3"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/baseline_arrow_right_alt_24"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundedbutton"
+        android:layout_margin="16dp"
+        android:id="@+id/LLlocal2"
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/baseline_android_24"
+            />
+        <TextView
+            android:id="@+id/tv2"
+            android:paddingLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VIỆT THÁI QUÂN 4"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/baseline_arrow_right_alt_24"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundedbutton"
+
+        android:layout_margin="16dp"
+        android:id="@+id/LLlocal3"
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/baseline_android_24"
+            />
+        <TextView
+            android:id="@+id/tv3"
+            android:paddingLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SƠN MINH #5"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/baseline_arrow_right_alt_24"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundedbutton"
+        android:layout_margin="16dp"
+        android:id="@+id/LLlocal4"
+        >
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/baseline_android_24"
+            />
+        <TextView
+            android:id="@+id/tv4"
+            android:paddingLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SƠN MINH #2"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/baseline_arrow_right_alt_24"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

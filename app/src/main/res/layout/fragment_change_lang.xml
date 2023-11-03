@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDCACA"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".fragment.ChangeLangFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageButton
+            android:id="@+id/imbbackFraChLa"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:paddingEnd="10dp"
+            android:src="@drawable/round_arrow_back_ios_24"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="8dp"
+            android:text="Đổi ngôn ngữ"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        >
+    <RadioButton
+        android:id="@+id/LangVN"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="8dp"
+        android:buttonTint="#E81F1F"
+        android:background="@drawable/roundedbutton"
+        android:layoutDirection="rtl"
+        android:layout_gravity="start"
+        android:padding="16dp"
+        android:text="Tiếng việt"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:drawablePadding="8dp"
+        android:checked="true"
+        android:drawableLeft="@drawable/vietnam__1_"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/LangEN"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="8dp"
+            android:paddingRight="51dp"
+            android:buttonTint="#E81F1F"
+            android:background="@drawable/roundedbutton"
+            android:layoutDirection="rtl"
+            android:layout_gravity="start"
+            android:padding="16dp"
+            android:text="English"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/united__1_"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+
+
+</LinearLayout>

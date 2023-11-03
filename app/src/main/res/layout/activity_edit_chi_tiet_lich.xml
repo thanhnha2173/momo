@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDCACA"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.EditUserInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageButton
+            android:id="@+id/imbbackInfoEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/transparent"
+            android:src="@drawable/round_arrow_back_ios_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="44dp"
+            android:padding="8dp"
+            android:text="Edit calendar details"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/cannelDel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Huỷ"
+            android:textSize="24dp"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:text="Tên đại lý"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/nameDel"
+        android:focusable="false"
+        android:textSize="20dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="16dp"
+        android:onClick="showPopupMenu"
+        android:drawableRight="@drawable/round_arrow_drop_down_24"
+        android:layout_marginLeft="8dp"
+        android:textColor="#736D6D"
+        android:background="@drawable/roundedbutton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:text="Chọn ngày đặt lịch"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/dateDel"
+        android:textSize="20dp"
+        android:paddingLeft="8dp"
+        android:focusable="false"
+        android:paddingRight="16dp"
+        android:layout_marginLeft="8dp"
+        android:textColor="#736D6D"
+        android:inputType="none"
+        android:drawableRight="@drawable/baseline_date_range_24"
+        android:background="@drawable/roundedbutton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="8dp"
+        android:text="Mô tả về lỗi của xe"
+        android:textColor="@color/black"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/motaDel"
+        android:textSize="20dp"
+        android:padding="8dp"
+        android:layout_marginLeft="8dp"
+        android:textColor="#736D6D"
+        android:hint="Thêm mô tả về lỗi của xe."
+        android:background="@drawable/roundedbutton"
+        android:layout_width="match_parent"
+        android:gravity="fill_horizontal"
+        android:layout_height="150dp"
+        />
+    <Button
+        android:id="@+id/saveDel"
+        android:layout_marginTop="32sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:text="Lưu"
+        android:background="@drawable/dodangnhap"
+        android:textAllCaps="false"/>
+
+
+</LinearLayout>

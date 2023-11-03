@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="Momo" android:id="@+id/mnHome" android:icon="@drawable/baseline_home_24" />
+    <item android:title="Ưu đãi" android:id="@+id/mnUuDai" android:icon="@drawable/baseline_discount_24"  />
+    <item android:title="Lịch sử GD" android:id="@+id/LSGD" android:icon="@drawable/baseline_history_24"/>
+    <item android:title="Chat" android:id="@+id/mnChat" android:icon="@drawable/baseline_chat_24"/>
+    <item android:title="Ví của tôi" android:id="@+id/mnViCuaToi" android:icon="@drawable/outline_account_circle_24"/>
+</menu>

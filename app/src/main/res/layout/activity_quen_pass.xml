@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cntREF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDCACA"
+    android:orientation="vertical"
+    tools:context=".ui.QuenPassActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@color/MomoColor"
+        >
+
+        <ImageButton
+            android:id="@+id/imbbackQuenPass"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:paddingStart="18dp"
+
+            android:src="@drawable/baseline_arrow_back_24" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:gravity="center"
+            android:paddingEnd="30dp"
+            android:text="Quên mật khẩu"
+            android:textColor="@color/white"
+            android:textSize="26dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            >
+
+            <TextView
+                android:background="@drawable/roundedbutton"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="7dp"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:text="+84"
+                android:textColor="@color/black"
+
+                />
+            <EditText
+                android:id="@+id/edSDT1"
+                android:background="@drawable/roundedbutton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Nhập số điện thoại của bạn"
+                android:inputType="phone"
+                android:focusable="false"
+                android:paddingLeft="20dp"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edMK1"
+            android:background="@drawable/roundedbutton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="25dp"
+            android:hint="Nhập mật khẩu"
+            android:paddingLeft="20dp"
+            android:inputType="textPassword"
+            android:maxLength="6"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            />
+        <EditText
+            android:id="@+id/edMK3"
+            android:background="@drawable/roundedbutton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginBottom="200dp"
+            android:hint="Nhập lại mật khẩu"
+            android:maxLength="6"
+            android:paddingLeft="20dp"
+            android:inputType="textPassword"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            />
+
+        <Button
+            android:id="@+id/btdone"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/roundedbutton"
+            android:text="Hoàn tất"
+            android:textAllCaps="false"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

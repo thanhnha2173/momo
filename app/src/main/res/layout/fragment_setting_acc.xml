@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDCACA"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".fragment.ChangeLangFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageButton
+            android:id="@+id/imbbackFraSeAcc"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:paddingEnd="10dp"
+            android:src="@drawable/round_arrow_back_ios_24"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="8dp"
+            android:text="Thiết lập tài khoản"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/changePass"
+        android:layout_margin="8dp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Đổi mật khẩu"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:background="@drawable/roundedbutton"
+        android:drawableRight="@drawable/baseline_arrow_circle_right_24" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/removeAcc"
+        android:layout_margin="8dp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Xoá tài khoản"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:background="@drawable/roundedbutton"
+        android:drawableRight="@drawable/baseline_arrow_circle_right_24" />
+</LinearLayout>

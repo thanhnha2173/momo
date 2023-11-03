@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDCACA"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".fragment.ChangPassFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <ImageButton
+            android:id="@+id/imbbackFraChLa"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:paddingEnd="10dp"
+            android:src="@drawable/round_arrow_back_ios_24" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="8dp"
+            android:text="Đổi mật khẩu"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:text="Mật khẩu hiện tại"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/roundedbutton">
+
+        <EditText
+            android:id="@+id/edpassCur"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/roundedbutton"
+            android:gravity="center_vertical"
+            android:hint="Nhập mật khẩu hiện tại"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/ivSHPassCur"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="64dp"
+            android:layout_gravity="center_vertical"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:text="Mật khẩu mới"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/roundedbutton">
+
+        <EditText
+            android:id="@+id/edpassNew"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/roundedbutton"
+            android:gravity="center_vertical"
+            android:hint="Nhập mật khẩu mới"
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textSize="20dp" />
+        <ImageView
+            android:id="@+id/ivSHPassNew"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="64dp"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/checknewPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kiểm tra"
+        android:textAllCaps="false"
+        android:layout_marginLeft="32dp"
+        android:backgroundTint="#0EB81F"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:text="Tạo một mật khẩu thoả mãn:"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="24dp"
+        android:layout_marginBottom="24dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/dktruePasscur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/baseline_close_24"
+            android:layout_marginLeft="24dp"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Nhập chính xác mật khẩu hiện tại"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dk8kitu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/baseline_close_24"
+            android:layout_marginLeft="24dp"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Chứa ít nhất 8 kí tự"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dkchuhoavath"
+            android:drawablePadding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/baseline_close_24"
+            android:layout_marginLeft="24dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Chứa cả chữ thường(a-z) và chữ hoa(A-Z)"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dkso"
+            android:drawablePadding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/baseline_close_24"
+            android:layout_marginLeft="24dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Chứa ít nhất một số(0-9)"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btchangePass"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="Đặt lại mật khẩu"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:backgroundTint="#CF3249"
+        />
+
+
+</LinearLayout>

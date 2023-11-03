@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDCACA"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".admin.AdminActivity">
+
+    <Button
+        android:id="@+id/GAUsers"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Get all users" />
+
+    <Button
+        android:id="@+id/GALich"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Get all calendars" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Log out" />
+
+</LinearLayout>
