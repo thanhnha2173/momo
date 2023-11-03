@@ -308,7 +308,7 @@
         android:id="@+id/out"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/MomoColor"
         android:text="Đăng xuất"
         android:textSize="20sp"
         android:layout_marginTop="16dp"

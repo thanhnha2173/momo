@@ -50,7 +50,6 @@
             />
     </LinearLayout>
     <Button
-
         android:id="@+id/btdkyctn"
         android:layout_marginTop="15sp"
         android:backgroundTint="@color/MomoColor"

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class RutTienActivity extends AppCompatActivity {
     TextView soduviNT, soduviXem;
     Button btnt;
+    ImageButton backLogin1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class RutTienActivity extends AppCompatActivity {
         btnt = findViewById(R.id.btRT);
         soduviNT = findViewById(R.id.soduviRT);
         soduviXem = findViewById(R.id.soduviXem);
+        backLogin1 = findViewById(R.id.backLogin1);
         getInfo(phoneNumber);
         btnt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +49,12 @@ public class RutTienActivity extends AppCompatActivity {
                     int sodu = Integer.parseInt(String.valueOf(soduviNT.getText()));
                     updateToFireStore(phoneNumber,sodu);
                 }
+            }
+        });
+        backLogin1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

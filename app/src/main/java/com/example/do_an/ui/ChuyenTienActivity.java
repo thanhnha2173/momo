@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.do_an.R;
@@ -21,6 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ChuyenTienActivity extends AppCompatActivity {
     EditText sdtCT, soduviNT, ndCT;
     Button btCT;
+    ImageButton backLogin1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class ChuyenTienActivity extends AppCompatActivity {
         sdtCT = findViewById(R.id.sdtCT);
         soduviNT = findViewById(R.id.soduviNT);
         ndCT = findViewById(R.id.ndCT);
+        backLogin1 = findViewById(R.id.backLogin1);
         btCT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +48,12 @@ public class ChuyenTienActivity extends AppCompatActivity {
                     int amount = Integer.parseInt(amountStr);
                     transferMoney(phoneNumber1,phoneNumber, amount);
                 }
+            }
+        });
+        backLogin1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

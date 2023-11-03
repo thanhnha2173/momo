@@ -5,7 +5,7 @@
     android:id="@+id/cntREF"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CDCACA"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.Register2Activity">
 
@@ -108,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="15sp"
-            android:background="@drawable/roundedbutton"
+            android:backgroundTint="@color/MomoColor"
             android:text="Đăng ký "
             android:textAllCaps="false"
             android:textSize="20dp"

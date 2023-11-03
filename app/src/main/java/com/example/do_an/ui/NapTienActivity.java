@@ -37,6 +37,7 @@ public class NapTienActivity extends AppCompatActivity {
         String phoneNumber = sharedPreferences.getString("PHONE_NUMBER", "");
         btnt = findViewById(R.id.btNT);
         soduviNT = findViewById(R.id.soduviNT);
+        backLogin1 = findViewById(R.id.backLogin1);
         btnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,12 +52,11 @@ public class NapTienActivity extends AppCompatActivity {
                 }
             }
         });
-//        backLogin1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+        backLogin1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {finish();}
+        });
+
     }
     private void updateToFireStore(String id, int sodu) {
         FirebaseFirestore db;
