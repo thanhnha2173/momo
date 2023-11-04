@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="trans">#110F0C12</color>
     <color name="MomoColor">#B82C84</color>
+    <color name="background">#ECECEC</color>
 
 </resources>
