@@ -1,6 +1,7 @@
 package com.example.do_an.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.do_an.R;
 import com.example.do_an.adapter.DataAdapter;
 import com.example.do_an.model.MenuCollection;
+import com.example.do_an.ui.ChiTietGoiDataActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +39,7 @@ public class DataFragment extends Fragment {
 
         btnBack1 = view.findViewById(R.id.btnBack1);
         recyclerView = view.findViewById(R.id.recyclerView);
-        recycle_data = view.findViewById(R.id.recycle_data);
-        listChooseCollection();
-
-        mnCollectionAdapter = new DataAdapter(lstData, requireContext());
-        recyclerView.setAdapter(mnCollectionAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        setupRecycleView();
 
         btnBack1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,17 +50,40 @@ public class DataFragment extends Fragment {
         return view;
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(MenuCollection menuCollection);
+    }
 
+    private OnItemClickListener itemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        itemClickListener = listener;
+    }
+
+    private void setupRecycleView() {
+        listChooseCollection();
+        DataAdapter adapter = new DataAdapter(lstData, requireContext(), new DataAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(MenuCollection menuCollection) {
+                Intent intent = new Intent(requireContext(), ChiTietGoiDataActivity.class);
+                intent.putExtra("menuCollection", menuCollection);
+                startActivity(intent);
+            }
+        });
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+    }
     private void listChooseCollection() {
         lstData = new ArrayList<>();
         lstData.add(new MenuCollection(1, "70.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(2, "70.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(3, "70.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(4, "70.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(5, "70.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(6, "70.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(7, "70.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(8, "70.000 Đ", R.drawable.momoimg));
+        lstData.add(new MenuCollection(2, "90.000 Đ", R.drawable.momoimg));
+        lstData.add(new MenuCollection(3, "120.000 Đ", R.drawable.momoimg));
+        lstData.add(new MenuCollection(4, "30.000 Đ", R.drawable.momoimg));
+        lstData.add(new MenuCollection(5, "10.000 Đ", R.drawable.momoimg));
+        lstData.add(new MenuCollection(6, "5.000 Đ", R.drawable.momoimg));
+        lstData.add(new MenuCollection(7, "30.000 Đ", R.drawable.momoimg));
+        lstData.add(new MenuCollection(8, "15.000 Đ", R.drawable.momoimg));
     }
 }
 

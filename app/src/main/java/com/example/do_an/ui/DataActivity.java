@@ -51,36 +51,7 @@ public class DataActivity extends AppCompatActivity {
         }
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-
-        View view = inflater.inflate(R.layout.activity_data, container, false);
-        anhXa(view);
-        listChooseCollection();
-        if(lstData.size() > 0){
-            mnCollectionAdapter = new DataAdapter(lstData, this);
-            recycle_data.setAdapter(mnCollectionAdapter);
-            recycle_data.setLayoutManager(new LinearLayoutManager(this));
-        }
-        return view;
-    }
-
-    private void listChooseCollection() {
-
-        lstData = new ArrayList<>();
-
-        lstData.add(new MenuCollection(1,"70.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(2,"70.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(3,"70.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(4,"70.000 Đ", R.drawable.momoimg));
-    }
-
     private void anhXa(View view){
-
         recycle_data = view.findViewById(R.id.recycle_data);
-//        btnBack = view.findViewById(R.id.btnBack);
     }
-//    public Context getContext() {
-//
-//        return context;
-//    }
 }

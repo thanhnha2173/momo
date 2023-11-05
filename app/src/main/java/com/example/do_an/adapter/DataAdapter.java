@@ -17,12 +17,18 @@ import com.example.do_an.ui.DataActivity;
 import java.util.List;
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
+    public interface OnItemClickListener {
+        void onItemClick(MenuCollection menuCollection);
+    }
     private Context context;
     private List<MenuCollection> lstMnCollection;
+    private OnItemClickListener listener;
 
-    public DataAdapter(List<MenuCollection> lstMnCollection, Context context) {
+
+    public DataAdapter(List<MenuCollection> lstMnCollection, Context context, OnItemClickListener listener) {
         this.lstMnCollection = lstMnCollection;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -41,6 +47,14 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             titleCollection = titleCollection.substring(0, 28) + "...";
         }
         holder.txtTitle.setText(titleCollection);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onItemClick(menuCollection);
+                }
+            }
+        });
     }
     @Override
     public int getItemCount() {

@@ -1,6 +1,9 @@
 package com.example.do_an.model;
 
-public class MenuCollection {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class MenuCollection implements Parcelable {
     private int id_menuCollection;
     private String title_menuCollection;
     private int img_menu_Collection;
@@ -25,6 +28,35 @@ public class MenuCollection {
         this.id_menuCollection = id_menuCollection;
         this.title_menuCollection = title_menuCollection;
         this.img_menu_Collection = img_menu_Collection;
+    }
+    protected MenuCollection(Parcel in) {
+        id_menuCollection = in.readInt();
+        title_menuCollection = in.readString();
+        img_menu_Collection = in.readInt();
+    }
+
+    public static final Creator<MenuCollection> CREATOR = new Creator<MenuCollection>() {
+        @Override
+        public MenuCollection createFromParcel(Parcel in) {
+            return new MenuCollection(in);
+        }
+
+        @Override
+        public MenuCollection[] newArray(int size) {
+            return new MenuCollection[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id_menuCollection);
+        dest.writeString(title_menuCollection);
+        dest.writeInt(img_menu_Collection);
     }
 
     public int getId_menuCollection() {
