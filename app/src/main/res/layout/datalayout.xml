@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="8dp"
     app:cardCornerRadius="4dp"
     android:layout_margin="5dp">
 
-    <LinearLayout
-        android:id="@+id/thongbao_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/thongbao_main"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,15 +18,16 @@
             android:weightSum="10"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/image_thongbao"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:id="@+id/image_data"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/momoimg"
                 android:layout_margin="5dp"
                 android:background="@drawable/frame1"/>
 
                 <TextView
+                    android:id="@+id/title_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="70.000 Đ"
@@ -39,6 +40,6 @@
                     />
         </LinearLayout>
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 </androidx.cardview.widget.CardView>

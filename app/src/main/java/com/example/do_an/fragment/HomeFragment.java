@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.do_an.R;
 import com.example.do_an.model.UserInfo;
 import com.example.do_an.ui.ChuyenTienActivity;
+import com.example.do_an.ui.DataActivity;
 import com.example.do_an.ui.EnterSdtActivity;
 import com.example.do_an.ui.NapTienActivity;
 import com.example.do_an.ui.PersonalPageActivity;
@@ -42,7 +43,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     ImageButton goUsers;
     TextView search, soduvi;
-    LinearLayout naptien, rutTien, chuyenTien;
+    LinearLayout naptien, rutTien, chuyenTien, napdata;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,11 +53,11 @@ public class HomeFragment extends Fragment {
         String phoneNumber = sharedPreferences.getString("PHONE_NUMBER", "");
         goUsers = view.findViewById(R.id.goUsers);
         soduvi = view.findViewById(R.id.soduvi);
-
         naptien = view.findViewById(R.id.naptien);
         rutTien = view.findViewById(R.id.rutTien);
         chuyenTien = view.findViewById(R.id.chuyenTien);
         search = view.findViewById(R.id.search);
+        napdata = view.findViewById(R.id.napdata);
         getInfo(phoneNumber);
         naptien.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +77,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ChuyenTienActivity.class);
+                startActivity(intent);
+            }
+        });
+        napdata.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), DataActivity.class);
                 startActivity(intent);
             }
         });
