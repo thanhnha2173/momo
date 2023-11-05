@@ -64,9 +64,9 @@ public class DataFragment extends Fragment {
         listChooseCollection();
         DataAdapter adapter = new DataAdapter(lstData, requireContext(), new DataAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(MenuCollection menuCollection) {
+            public void onItemClick(MenuCollection menuCollection, String title) {
                 Intent intent = new Intent(requireContext(), ChiTietGoiDataActivity.class);
-                intent.putExtra("menuCollection", menuCollection);
+                intent.putExtra("title", title);
                 startActivity(intent);
             }
         });

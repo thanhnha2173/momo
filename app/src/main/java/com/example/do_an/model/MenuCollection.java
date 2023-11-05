@@ -35,18 +35,6 @@ public class MenuCollection implements Parcelable {
         img_menu_Collection = in.readInt();
     }
 
-    public static final Creator<MenuCollection> CREATOR = new Creator<MenuCollection>() {
-        @Override
-        public MenuCollection createFromParcel(Parcel in) {
-            return new MenuCollection(in);
-        }
-
-        @Override
-        public MenuCollection[] newArray(int size) {
-            return new MenuCollection[size];
-        }
-    };
-
     @Override
     public int describeContents() {
         return 0;
@@ -58,6 +46,17 @@ public class MenuCollection implements Parcelable {
         dest.writeString(title_menuCollection);
         dest.writeInt(img_menu_Collection);
     }
+    public static final Creator<MenuCollection> CREATOR = new Creator<MenuCollection>() {
+        @Override
+        public MenuCollection createFromParcel(Parcel in) {
+            return new MenuCollection(in);
+        }
+
+        @Override
+        public MenuCollection[] newArray(int size) {
+            return new MenuCollection[size];
+        }
+    };
 
     public int getId_menuCollection() {
         return id_menuCollection;

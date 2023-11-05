@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.do_an.R;
 import com.example.do_an.fragment.DataFragment;
@@ -26,6 +27,9 @@ public class PaymentSuccessActivity extends AppCompatActivity {
 
         btnBackHome = findViewById(R.id.btnBackHome);
         btnBuyData = findViewById(R.id.btnBuyData);
+        String dataprice = getIntent().getStringExtra("dataprice");
+        TextView datapricecon = findViewById(R.id.datapricecon);
+        datapricecon.setText(dataprice);
 
         menuCollection = getIntent().getParcelableExtra("menuCollection");
         btnBuyData.setOnClickListener(new View.OnClickListener() {
