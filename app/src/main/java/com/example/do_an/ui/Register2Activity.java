@@ -84,7 +84,6 @@ public class Register2Activity extends AppCompatActivity {
 
             }
         });
-
     }
 
     // Hàm cập nhật

@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.do_an.R;
+import com.example.do_an.model.ThongBaoModel;
 import com.example.do_an.model.UserInfo;
 import com.example.do_an.ui.ChuyenTienActivity;
 import com.example.do_an.ui.DataActivity;
@@ -25,6 +26,7 @@ import com.example.do_an.ui.EnterSdtActivity;
 import com.example.do_an.ui.NapTienActivity;
 import com.example.do_an.ui.PersonalPageActivity;
 import com.example.do_an.ui.RutTienActivity;
+import com.example.do_an.ui.ThongbaoActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -41,7 +43,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
-    ImageButton goUsers;
+    ImageButton goUsers, thongbao;
     TextView search, soduvi;
     LinearLayout naptien, rutTien, chuyenTien, napdata;
 
@@ -58,6 +60,7 @@ public class HomeFragment extends Fragment {
         chuyenTien = view.findViewById(R.id.chuyenTien);
         search = view.findViewById(R.id.search);
         napdata = view.findViewById(R.id.napdata);
+        thongbao = view.findViewById(R.id.thongbao);
         getInfo(phoneNumber);
         naptien.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +80,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ChuyenTienActivity.class);
+                startActivity(intent);
+            }
+        });
+        thongbao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ThongbaoActivity.class);
                 startActivity(intent);
             }
         });

@@ -18,18 +18,26 @@ import android.widget.Toast;
 
 import com.example.do_an.R;
 import com.example.do_an.model.MenuCollection;
+import com.example.do_an.model.TransactionInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
 public class ChiTietGoiDataActivity extends AppCompatActivity {
 
     private ImageButton dedataback;
     private Button btbBuyData;
-    private TextView dataprice;
+    private TextView iddata;
     private MenuCollection menuCollection;
+    private String currentData, hour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,23 +45,27 @@ public class ChiTietGoiDataActivity extends AppCompatActivity {
 
         MenuCollection menuCollection = getIntent().getParcelableExtra("menuCollection");
 
+        iddata = findViewById(R.id.iddata);
         dedataback = findViewById(R.id.dedataback);
         btbBuyData = findViewById(R.id.btnBuyData);
         String title = getIntent().getStringExtra("title");
         TextView dataprice = findViewById(R.id.dataprice);
         dataprice.setText(title);
+        String iddataString = iddata.getText().toString();
 
         btbBuyData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = getIntent().getStringExtra("title");
                 String priceString = title.replace(" Đ", "").replace(".", "").replace(",", "").trim();
                 int price = Integer.parseInt(priceString);
+                currentData = getCurrentDateAsString();
+                hour = getCurrentTime();
 
                 SharedPreferences sharedPreferences = getSharedPreferences("my_phone", Context.MODE_PRIVATE);
                 String userId = sharedPreferences.getString("PHONE_NUMBER", "");
 
                 updateBalance(userId, price);
+                updateNotification(iddataString, title, currentData, hour);
                 Intent intent = new Intent(ChiTietGoiDataActivity.this, PaymentSuccessActivity.class);
 
                 intent.putExtra("dataprice", title);
@@ -77,13 +89,30 @@ public class ChiTietGoiDataActivity extends AppCompatActivity {
             actionBar.hide();
         }
     }
+    private String getCurrentDateAsString() {
+        // Lấy ngày và giờ hiện tại
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        // Định dạng ngày theo định dạng dd/MM/yyyy
+        return simpleDateFormat.format(calendar.getTime());
+    }
+    public String getCurrentTime() {
+        Calendar calendar = Calendar.getInstance();
+
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+
+        // Format the time as a string
+        String currentTime = String.format("%02d:%02d:%02d", hour, minute, second);
+
+        return currentTime;
+    }
 
     private void updateBalance(String userId, int amountToSubtract) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference userRef = db.collection("Users").document(userId);
-        Log.d("ChiTietGoiDataActivity", "User ID: " + userId); // Ghi log về ID người dùng
-        Log.d("ChiTietGoiDataActivity", "Amount to Subtract: " + amountToSubtract); // Ghi log về số tiền trừ
-
 
         userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -122,5 +151,22 @@ public class ChiTietGoiDataActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void updateNotification(String titletran, String pricetran, String date, String hour){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> notificationMap = new HashMap<>();
+        notificationMap.put("iddata", titletran);
+        notificationMap.put("pricetran", pricetran);
+        notificationMap.put("date", date);
+        notificationMap.put("hour", hour);
+
+        db.collection("TransactionInfo").add(notificationMap)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(ChiTietGoiDataActivity.this, "Thông tin đã được đẩy lên Firebase", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(ChiTietGoiDataActivity.this, "Lỗi khi đẩy thông tin lên Firebase: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }

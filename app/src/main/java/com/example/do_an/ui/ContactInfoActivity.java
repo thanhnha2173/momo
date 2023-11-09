@@ -51,7 +51,6 @@ public class ContactInfoActivity extends AppCompatActivity {
                 updateToFireStore(userInfo);
             }
         });
-
     }
     void getInfo(String phoneNumber){
         FirebaseFirestore db;

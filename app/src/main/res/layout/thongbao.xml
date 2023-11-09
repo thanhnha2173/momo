@@ -22,7 +22,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/momoimg"/>
+                android:src="@drawable/momoimg"
+                android:layout_gravity="center"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,12 +34,12 @@
                     android:id="@+id/title_thongbao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="8dp"
+                    android:text="Title"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/sotiengiaodich"
@@ -51,16 +52,31 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="8dp"/>
 
-                <TextView
-                    android:id="@+id/ngaygiaodich"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="01/01/2023"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginLeft="10dp"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/ngaygiaodich"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="01/01/2023"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="10dp"/>
+                    <TextView
+                        android:id="@+id/giogiaodich"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="12:01:23"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>

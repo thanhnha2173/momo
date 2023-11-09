@@ -22,10 +22,17 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
 public class RutTienActivity extends AppCompatActivity {
-    TextView soduviNT, soduviXem;
+    TextView soduviNT, soduviXem, iddataRT;
     Button btnt;
     ImageButton backLogin1;
+    private String date, hour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +42,7 @@ public class RutTienActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("my_phone", Context.MODE_PRIVATE);
         String phoneNumber = sharedPreferences.getString("PHONE_NUMBER", "");
 
+        iddataRT = findViewById(R.id.iddataRT);
         btnt = findViewById(R.id.btRT);
         soduviNT = findViewById(R.id.soduviRT);
         soduviXem = findViewById(R.id.soduviXem);
@@ -43,11 +51,16 @@ public class RutTienActivity extends AppCompatActivity {
         btnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                date = getCurrentDateAsString();
+                hour = getCurrentTime();
+                String iddata = iddataRT.getText().toString();
+                String price = soduviNT.getText().toString();
                 if(soduviNT.getText() == null)
                     Toast.makeText(RutTienActivity.this, "Chưa nhập số tiền cần rút", Toast.LENGTH_SHORT).show();
                 else{
                     int sodu = Integer.parseInt(String.valueOf(soduviNT.getText()));
                     updateToFireStore(phoneNumber,sodu);
+                    updateNotification(iddata, price, date, hour);
                 }
             }
         });
@@ -58,6 +71,27 @@ public class RutTienActivity extends AppCompatActivity {
             }
         });
     }
+    private String getCurrentDateAsString() {
+        // Lấy ngày và giờ hiện tại
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        // Định dạng ngày theo định dạng dd/MM/yyyy
+        return simpleDateFormat.format(calendar.getTime());
+    }
+    public String getCurrentTime() {
+        Calendar calendar = Calendar.getInstance();
+
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+
+        // Format the time as a string
+        String currentTime = String.format("%02d:%02d:%02d", hour, minute, second);
+
+        return currentTime;
+    }
+
     private void updateToFireStore(String id, int sodu) {
         FirebaseFirestore db;
         db = FirebaseFirestore.getInstance();
@@ -99,6 +133,7 @@ public class RutTienActivity extends AppCompatActivity {
             }
         });
     }
+
     void getInfo(String phoneNumber) {
         FirebaseFirestore db;
         db = FirebaseFirestore.getInstance();
@@ -118,5 +153,38 @@ public class RutTienActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void updateNotification(String titletran, String pricetran, String date, String hour){
+        String formatedPrice = formatCurrencyFromString(pricetran);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> notificationMap = new HashMap<>();
+        notificationMap.put("iddata", titletran);
+        notificationMap.put("pricetran", formatedPrice);
+        notificationMap.put("date", date);
+        notificationMap.put("hour", hour);
+
+        db.collection("TransactionInfo").add(notificationMap)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(RutTienActivity.this, "Thông tin đã được đẩy lên Firebase", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(RutTienActivity.this, "Lỗi khi đẩy thông tin lên Firebase: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    public String formatCurrency(int amount) {
+        String currency = String.format("%,d", amount); // Định dạng số nguyên thành chuỗi có dấu chấm làm dấu phân cách hàng nghìn
+        return currency + " Đ"; // Thêm ký hiệu tiền tệ vào chuỗi
+    }
+    public String formatCurrencyFromString(String amountString){
+        try {
+            int amount = Integer.parseInt(amountString);
+            return formatCurrency(amount);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return "Invalid amount";
+        }
     }
 }

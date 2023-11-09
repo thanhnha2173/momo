@@ -68,7 +68,6 @@ public class EnterSdtActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
     void checkPhone(String phoneNumber){
         db.setLoggingEnabled(true);
@@ -83,7 +82,7 @@ public class EnterSdtActivity extends AppCompatActivity {
                                     Intent intent = new Intent(EnterSdtActivity.this, LoginActivity.class);
                                     intent.putExtra("PHONE_NUMBER", phoneNumber);
                                 Toast.makeText(EnterSdtActivity.this, "Vui lòng nhập mật khẩu để đăng nhập tài khoản", Toast.LENGTH_SHORT).show();
-                                startActivity(intent);
+                                startActivity(intent);  
                                 
                             } else {
                                 Intent intent = new Intent(EnterSdtActivity.this, RegisterActivity.class);

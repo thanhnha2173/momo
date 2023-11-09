@@ -94,6 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString("PHONE_NUMBER", phoneNumber); // "username" là tên key, username là giá trị
                                             editor.apply();
                                             startActivity(intent);
+                                            finishAffinity();
                                         } else {
                                             // Password does not match
                                             Toast.makeText(LoginActivity.this, "Mật khẩu không chính xác!", Toast.LENGTH_SHORT).show();

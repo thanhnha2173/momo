@@ -66,8 +66,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 updateToFireStore(userInfo, phoneNumber);
             }
         });
-
-
     }
 
 
