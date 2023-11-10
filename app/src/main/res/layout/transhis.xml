@@ -8,20 +8,21 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/thongbao_main"
+        android:id="@+id/transhis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="10"
             android:orientation="horizontal">
             <ImageView
-                android:id="@+id/image_thongbao"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:id="@+id/image_transhis"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:scaleType="centerCrop"
+                android:layout_margin="10dp"
                 android:src="@drawable/momoimg"
                 android:layout_gravity="center"/>
 
@@ -31,7 +32,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/title_thongbao"
+                    android:id="@+id/title_transhis"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -41,41 +42,55 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/sotiengiaodich"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Số tiền giao dịch"
-                    android:textColor="@color/red"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/ngaygiaodich"
+                        android:id="@+id/ngay_transhis"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="01/01/2023"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textColor="@color/black"/>
                     <TextView
-                        android:id="@+id/giogiaodich"
+                        android:id="@+id/gio_transhis"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="12:01:23"
                         android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Số dư ví: *****"
+                        android:textSize="16sp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"/>
+
+                    <TextView
+                        android:id="@+id/tien_transhis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="end"
+                        android:text="10.000đ"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="16sp" />
                 </LinearLayout>
 
             </LinearLayout>

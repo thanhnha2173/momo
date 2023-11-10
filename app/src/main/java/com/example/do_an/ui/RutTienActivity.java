@@ -92,6 +92,7 @@ public class RutTienActivity extends AppCompatActivity {
         return currentTime;
     }
 
+
     private void updateToFireStore(String id, int sodu) {
         FirebaseFirestore db;
         db = FirebaseFirestore.getInstance();
@@ -167,7 +168,7 @@ public class RutTienActivity extends AppCompatActivity {
 
         db.collection("TransactionInfo").add(notificationMap)
                 .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(RutTienActivity.this, "Thông tin đã được đẩy lên Firebase", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RutTienActivity.this, "Rút tiền thành công", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(RutTienActivity.this, "Lỗi khi đẩy thông tin lên Firebase: " + e.getMessage(), Toast.LENGTH_SHORT).show();

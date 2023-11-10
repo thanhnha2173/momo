@@ -27,7 +27,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class ChuyenTienActivity extends AppCompatActivity {
-    EditText sdtCT, soduviNT, ndCT;
+    EditText sdtCT, soduviCT, ndCT;
     TextView iddataCT;
     Button btCT;
     ImageButton backLogin1;
@@ -44,18 +44,18 @@ public class ChuyenTienActivity extends AppCompatActivity {
         iddataCT = findViewById(R.id.iddataCT);
         btCT = findViewById(R.id.btCT);
         sdtCT = findViewById(R.id.sdtCT);
-        soduviNT = findViewById(R.id.soduviNT);
+        soduviCT = findViewById(R.id.soduviCT);
         ndCT = findViewById(R.id.ndCT);
         backLogin1 = findViewById(R.id.backLogin1);
         btCT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String iddata = iddataCT.getText().toString();
-                String price = soduviNT.getText().toString();
+                String price = soduviCT.getText().toString();
                 date = getCurrentDateAsString();
                 hour = getCurrentTime();
                 String phoneNumber = sdtCT.getText().toString();
-                String amountStr = soduviNT.getText().toString();
+                String amountStr = soduviCT.getText().toString();
 
                 if (phoneNumber.isEmpty() || amountStr.isEmpty()) {
                     Toast.makeText(ChuyenTienActivity.this, "Chưa nhập đủ thông tin", Toast.LENGTH_SHORT).show();
@@ -106,7 +106,7 @@ public class ChuyenTienActivity extends AppCompatActivity {
 
         db.collection("TransactionInfo").add(notificationMap)
                 .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(ChuyenTienActivity.this, "Thông tin đã được đẩy lên Firebase", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChuyenTienActivity.this, "Chuyển tiền thành công", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(ChuyenTienActivity.this, "Lỗi khi đẩy thông tin lên Firebase: " + e.getMessage(), Toast.LENGTH_SHORT).show();

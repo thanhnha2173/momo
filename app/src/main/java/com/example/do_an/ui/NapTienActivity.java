@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class NapTienActivity extends AppCompatActivity {
-    TextView soduviNT, iddataNT;
+    TextView soduviNT, iddataNT, soduViMomo;
     Button btnt;
     ImageButton backLogin1;
     private String date, hour;
@@ -41,11 +42,14 @@ public class NapTienActivity extends AppCompatActivity {
         actionBar.hide();
         SharedPreferences sharedPreferences = getSharedPreferences("my_phone", Context.MODE_PRIVATE);
         String phoneNumber = sharedPreferences.getString("PHONE_NUMBER", "");
+        soduViMomo = findViewById(R.id.soduViMomo);
         iddataNT = findViewById(R.id.iddataNT);
         btnt = findViewById(R.id.btNT);
         soduviNT = findViewById(R.id.soduviNT);
         backLogin1 = findViewById(R.id.backLogin1);
+        getInfo(phoneNumber);
         btnt.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SuspiciousIndentation")
             @Override
             public void onClick(View view) {
                 date = getCurrentDateAsString();
@@ -127,6 +131,28 @@ public class NapTienActivity extends AppCompatActivity {
             }
         });
     }
+
+    void getInfo(String phoneNumber) {
+        FirebaseFirestore db;
+        db = FirebaseFirestore.getInstance();
+        db.collection("Users").document(phoneNumber).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                long sodu = document.getLong("soDuVi");
+                                if (sodu >= 1000)
+                                    soduViMomo.setText(String.format("%,d", sodu) + "đ"); // Định dạng số dư thành chuỗi có dấu chấm làm dấu phân cách hàng nghìn
+                                else
+                                    soduViMomo.setText(String.valueOf(sodu)); // Định dạng số dư thành chuỗi có dấu chấm làm dấu phân cách hàng nghìn
+                            }
+                        }
+                    }
+                });
+    }
+
     private void updateNotification(String titletran, String pricetran, String date, String hour){
         String formatedPrice = formatCurrencyFromString(pricetran);
 

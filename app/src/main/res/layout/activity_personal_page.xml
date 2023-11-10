@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background"
     tools:context=".ui.PersonalPageActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginBottom="16dp"
         android:background="@color/MomoColor">
         <ImageButton
             android:id="@+id/backSetting"
@@ -18,28 +19,30 @@
             android:layout_gravity="center_vertical"
             android:paddingLeft="20dp"
             android:src="@drawable/baseline_arrow_back_24"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:contentDescription="Quay lại Activity trước đó"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Trang cá nhân"
+            android:text="Tôi"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="110dp"
+            android:layout_marginLeft="140dp"
             />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="16dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/roundedbutton">
+        android:background="@drawable/buttonframe">
 
         <TextView
             android:id="@+id/hoten1"
@@ -63,8 +66,7 @@
             android:layout_width="324dp"
             android:layout_height="163dp"
             android:layout_gravity="center"
-            android:background="@drawable/roundedbutton"
-            android:padding="8dp"
+            android:background="@drawable/transparent_button"
             android:src="@drawable/baseline_qr_code_24" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,6 +89,7 @@
                     android:text="Tải xuống"
                     android:textColor="@color/black"
                     android:textSize="20sp"
+                    android:textStyle="bold"
                     android:layout_marginLeft="8dp"/>
             </LinearLayout>
 
@@ -107,23 +110,33 @@
                     android:text="Gửi mã QR"
                     android:textColor="@color/black"
                     android:textSize="20sp"
+                    android:textStyle="bold"
                     android:layout_marginLeft="14dp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Tiện ích"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tiện ích"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/buttonframe"
         android:padding="8dp">
 
         <LinearLayout
@@ -131,24 +144,24 @@
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/roundedbutton">
+            android:background="@drawable/searchbgr">
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/dtc"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Điểm tin cậy Momo"
                 android:textColor="@color/black"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 android:textStyle="bold"
-                android:textSize="20sp"/>
-            <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/baseline_arrow_forward_ios_24"
-                android:background="@android:color/transparent"
-                android:layout_marginLeft="150dp"/>
+                android:textSize="18sp"
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/TTCN"
@@ -156,24 +169,23 @@
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/roundedbutton">
+            android:background="@drawable/searchbgr">
 
-
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ttcn"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Thông tin cá nhân"
                 android:textColor="@color/black"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 android:textStyle="bold"
-                android:textSize="20sp"/>
-            <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/baseline_arrow_forward_ios_24"
-                android:background="@android:color/transparent"
-                android:layout_marginLeft="160dp"/>
+                android:textSize="18sp"
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/TTLH"
@@ -182,34 +194,35 @@
             android:layout_gravity="center_vertical"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/roundedbutton">
+            android:background="@drawable/searchbgr">
 
-
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ttlh"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Thông tin liên hệ"
                 android:textColor="@color/black"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 android:textStyle="bold"
-                android:textSize="20sp"/>
-            <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/baseline_arrow_forward_ios_24"
-                android:background="@android:color/transparent"
-                android:layout_marginLeft="170dp"/>
+                android:textSize="20sp"
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"/>
         </LinearLayout>
     </LinearLayout>
     <Button
         android:id="@+id/out2"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:backgroundTint="@color/MomoColor"
+        android:backgroundTint="@color/white"
         android:text="Đăng xuất"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        android:textColor="@color/black"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
         />
 </LinearLayout>
     </LinearLayout>

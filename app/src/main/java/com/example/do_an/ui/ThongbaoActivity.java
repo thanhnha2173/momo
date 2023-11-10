@@ -17,6 +17,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ThongbaoActivity extends AppCompatActivity {
@@ -58,6 +60,16 @@ public class ThongbaoActivity extends AppCompatActivity {
                             ThongBaoModel thongBao = new ThongBaoModel(id, price, date, hour);
                             thongBaoList.add(thongBao);
                         }
+                        Collections.sort(thongBaoList, new Comparator<ThongBaoModel>() {
+                            @Override
+                            public int compare(ThongBaoModel o1, ThongBaoModel o2) {
+                                int dateComparison = o2.getDate().compareTo(o1.getDate());
+                                if (dateComparison == 0) {
+                                    return o2.getHour().compareTo(o1.getHour());
+                                }
+                                return dateComparison;
+                            }
+                        });
 
                         // Cập nhật RecyclerView thông qua Adapter
                         ThongBaoAdapter adapter = new ThongBaoAdapter(thongBaoList);
