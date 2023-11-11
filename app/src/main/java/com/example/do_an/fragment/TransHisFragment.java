@@ -1,10 +1,12 @@
 package com.example.do_an.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import com.example.do_an.R;
 import com.example.do_an.adapter.ThongBaoAdapter;
 import com.example.do_an.adapter.TransHisAdapter;
 import com.example.do_an.model.ThongBaoModel;
+import com.example.do_an.ui.ThongkeActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -30,17 +33,27 @@ public class TransHisFragment extends Fragment {
     private static final String TAG = "TransactionHistoryFragment";
     private RecyclerView recyclerView;
     private List<ThongBaoModel> transactionList;
+    private TextView report;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trans_his, container, false);
 
+        report = view.findViewById(R.id.report);
         recyclerView = view.findViewById(R.id.recycle_transhis);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         transactionList = new ArrayList<>();
 
         fetchDataFromFirestore();
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ThongkeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

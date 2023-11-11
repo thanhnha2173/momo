@@ -9,6 +9,7 @@
     tools:context=".ui.ThongkeActivity">
 
     <LinearLayout
+        android:id="@+id/btnBackReport"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/MomoColor">
@@ -26,4 +27,9 @@
             />
     </LinearLayout>
 
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChart"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
 </LinearLayout>
