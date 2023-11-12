@@ -2,41 +2,79 @@ package com.example.do_an.ui;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.do_an.R;
+import com.example.do_an.fragment.TransHisFragment;
 import com.example.do_an.model.ThongBaoModel;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class ThongkeActivity extends AppCompatActivity {
+    private TextView tongchitieu;
+    private LinearLayout lsgdlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thongke);
 
+        lsgdlist = findViewById(R.id.lsgdlist);
+        tongchitieu = findViewById(R.id.tongchitieu);
         LinearLayout btnBackReport = findViewById(R.id.btnBackReport);
         BarChart barChart = findViewById(R.id.barChart);
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setGranularity(1f);
+        xAxis.setValueFormatter(new IntergerAxisValueFormatter());
+
+//        lsgdlist.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Tạo một đối tượng fragment
+//                TransHisFragment transHisFragment = new TransHisFragment();
+//
+//                // Bắt đầu một giao dịch Fragment
+//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//
+//                // Thay thế fragment hiện tại bằng TransHisFragment
+//                transaction.replace(R.id.fragment_container, transHisFragment);
+//
+//                // Đặt tên cho transaction (không bắt buộc)
+//                transaction.addToBackStack(null);
+//
+//                // Kết thúc giao dịch
+//                transaction.commit();
+//            }
+//        });
 
         btnBackReport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +92,6 @@ public class ThongkeActivity extends AppCompatActivity {
         db.collection("TransactionInfo").get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        ArrayList<BarEntry> transaction = new ArrayList<>();
                         Map<Integer, Float> monthlyTotalMap = new HashMap<>();
 
                         for (QueryDocumentSnapshot document : task.getResult()) {
@@ -83,29 +120,25 @@ public class ThongkeActivity extends AppCompatActivity {
                                 } else {
                                     monthlyTotalMap.put(month, price);
                                 }
-                                String monthString = String.valueOf(month);
-                                float monthFloat = Float.parseFloat(monthString);
-
-                                transaction.add(new BarEntry(price, monthFloat));
                             } catch (NumberFormatException | ParseException e) {
                                 // Xử lý nếu có lỗi chuyển đổi kiểu số
                                 e.printStackTrace();
                                 Log.e("FirestoreData", "Error parsing price" + priceString, e);
                             }
                         }
-                        Log.d("FirestoreData", "Data loaded successfully");
-                        Log.d("BarChart", "Transaction size: " + transaction.size());
-
-                        for (BarEntry entry : transaction) {
-                            Log.d("BarChart", "Entry: x=" + entry.getX() + ", y=" + entry.getY());
-                        }
 
                         ArrayList<BarEntry> monthlyEntries = new ArrayList<>();
-                        for (Map.Entry<Integer, Float> entry : monthlyTotalMap.entrySet()) {
-                            int month = entry.getKey();
-                            float total = entry.getValue();
-                            monthlyEntries.add(new BarEntry(month, total));
+                        for (int i = 1; i <= 12; i++) {
+                            float total = monthlyTotalMap.containsKey(i) ? monthlyTotalMap.get(i) : 0;
+                            monthlyEntries.add(new BarEntry(i, total));
                         }
+
+                        Collections.sort(monthlyEntries, new Comparator<BarEntry>() {
+                            @Override
+                            public int compare(BarEntry entry1, BarEntry entry2) {
+                                return Float.compare(entry1.getX(), entry2.getX());
+                            }
+                        });
 
                         //Tạo BarDataSet và BarData
                         BarDataSet barDataSet = new BarDataSet(monthlyEntries, "Monthly Transactions");
@@ -114,15 +147,43 @@ public class ThongkeActivity extends AppCompatActivity {
                         barDataSet.setValueTextSize(16f);
 
                         BarData barData = new BarData(barDataSet);
+                        barData.setValueFormatter(new CurrencyFormatter());
 
                         barChart.setFitBars(true);
                         barChart.setData(barData);
-                        barChart.getDescription().setText("Monthly Expense Chart");
                         barChart.animateY(2000);
+
+                        float totalExpenseCurrentMonth = monthlyTotalMap.containsKey(Calendar.getInstance().get(Calendar.MONTH) + 1)
+                                ? monthlyTotalMap.get(Calendar.getInstance().get(Calendar.MONTH) + 1)
+                                : 0;
+
+                        CurrencyFormatter currencyFormatter = new CurrencyFormatter();
+                        tongchitieu.setText(currencyFormatter.getFormattedValue(totalExpenseCurrentMonth));
                     }
                     else {
                         Log.e("FirestoreData", "Error loading data", task.getException());
                     }
                 });
     }
+
+    public class IntergerAxisValueFormatter extends ValueFormatter {
+        @Override
+        public String getFormattedValue(float value) {
+            return String.valueOf((int) value);
+        }
+    }
+
+    public class CurrencyFormatter extends ValueFormatter {
+        private final DecimalFormat format;
+
+        public CurrencyFormatter() {
+            this.format = new DecimalFormat("#,###.###đ", new DecimalFormatSymbols(Locale.US));
+        }
+
+        @Override
+        public String getFormattedValue(float value) {
+            return format.format(value);
+        }
+    }
+
 }

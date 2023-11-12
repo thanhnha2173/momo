@@ -76,14 +76,14 @@ public class DataFragment extends Fragment {
     }
     private void listChooseCollection() {
         lstData = new ArrayList<>();
-        lstData.add(new MenuCollection(1, "70.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(2, "90.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(3, "120.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(4, "30.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(5, "10.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(6, "5.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(7, "30.000 Đ", R.drawable.momoimg));
-        lstData.add(new MenuCollection(8, "15.000 Đ", R.drawable.momoimg));
+        lstData.add(new MenuCollection(1, "70.000 Đ", R.drawable.k70));
+        lstData.add(new MenuCollection(2, "90.000 Đ", R.drawable.k90));
+        lstData.add(new MenuCollection(3, "120.000 Đ", R.drawable.k120));
+        lstData.add(new MenuCollection(4, "30.000 Đ", R.drawable.k30));
+        lstData.add(new MenuCollection(5, "10.000 Đ", R.drawable.k10));
+        lstData.add(new MenuCollection(6, "5.000 Đ", R.drawable.k5));
+        lstData.add(new MenuCollection(7, "3.000 Đ", R.drawable.k3));
+        lstData.add(new MenuCollection(8, "15.000 Đ", R.drawable.k15));
     }
 }
 
