@@ -130,14 +130,15 @@
             android:textSize="18sp"
             />
     </LinearLayout>
+
     <Button
         android:id="@+id/btlogin"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="10sp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="200dp"
-        android:backgroundTint="@color/MomoColor"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/roundedbutton"
         android:text="Đăng nhập"
         android:textAllCaps="false"
         android:textSize="20sp"

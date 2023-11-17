@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +14,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Do_an"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.ThongKeAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.UuDaiAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TaiKhoanAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AdminActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Do_an.NoActionBar" />
+        <activity
+            android:name=".ui.LichSuGiaoDichActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ThongTinCaNhanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SoDuViActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.DetailTkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TkAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.UdAdminActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.ThongkeActivity"
             android:exported="false" />
@@ -66,36 +98,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- <activity -->
-        <!-- android:name=".ui.EditChiTietLichActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".ui.ChiTietLichActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".admin.InfoUserActivityAdmin" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".admin.AllUsersActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".admin.AllLichActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".admin.AdminActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".ui.EditCarActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".ui.DatLichActivity" -->
-        <!-- android:exported="true" /> -->
-        <!-- <activity -->
-        <!-- android:name=".ui.EditUserInfoActivity" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".ui.InfoUserActivity" -->
-        <!-- android:exported="false" /> -->
+        </activity>
         <activity
             android:name=".ui.QuenPassActivity"
             android:exported="true" />

@@ -279,11 +279,11 @@
 
         <Button
             android:id="@+id/btNT"
-            android:layout_marginTop="32dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nạp tiền"
-            android:backgroundTint="@color/MomoColor"/>
+            android:layout_marginTop="32dp"
+            android:background="@drawable/roundedbutton"
+            android:text="Nạp tiền" />
     </LinearLayout>
 
 </LinearLayout>

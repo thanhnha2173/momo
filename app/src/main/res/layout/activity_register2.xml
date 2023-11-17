@@ -108,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="15sp"
-            android:backgroundTint="@color/MomoColor"
+            android:background="@drawable/roundedbutton"
             android:text="Đăng ký "
             android:textAllCaps="false"
             android:textSize="20dp"

@@ -52,7 +52,7 @@
     <Button
         android:id="@+id/btdkyctn"
         android:layout_marginTop="15sp"
-        android:backgroundTint="@color/MomoColor"
+        android:background="@drawable/roundedbutton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="Tiếp tục"

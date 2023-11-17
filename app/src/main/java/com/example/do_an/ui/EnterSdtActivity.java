@@ -33,69 +33,64 @@ public class EnterSdtActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-       // db.clearPersistence();
-       // FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        db.collection("Users")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                // Xóa mỗi tài liệu trong collection "Users"
-//                                db.collection("Users").document(document.getId()).delete();
-//                            }
-//                            Toast.makeText(EnterSdtActivity.this, "Đã xóa toàn bộ dữ liệu trong collection 'Users'", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(EnterSdtActivity.this, "Lỗi khi truy vấn dữ liệu: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
 
         edPhone = findViewById(R.id.edphone);
+        db = FirebaseFirestore.getInstance();
         Button btnContinue = findViewById(R.id.btdkyctn);
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String phoneNumber = edPhone.getText().toString().trim();
-                if (phoneNumber.length() != 10)
-                    Toast.makeText(EnterSdtActivity.this, "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
-                else if (!phoneNumber.isEmpty()) {
-                    checkPhone(phoneNumber);
-                }
-                else {
-                    Toast.makeText(EnterSdtActivity.this, "Chưa nhập SĐT", Toast.LENGTH_SHORT).show();
+                if (phoneNumber.equals("0000000000")) {
+                    Intent intent = new Intent(EnterSdtActivity.this, AdminActivity.class);
+                    startActivity(intent);
+                } else {
+                    if (phoneNumber.length() != 10)
+                        Toast.makeText(EnterSdtActivity.this, "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
+                    else if (!phoneNumber.isEmpty()) {
+                        checkPhone(phoneNumber);
+                    } else {
+                        Toast.makeText(EnterSdtActivity.this, "Chưa nhập SĐT", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
     }
     void checkPhone(String phoneNumber){
-        db.setLoggingEnabled(true);
-        db = FirebaseFirestore.getInstance();
-        db.collection("Users").document(phoneNumber).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                    Intent intent = new Intent(EnterSdtActivity.this, LoginActivity.class);
-                                    intent.putExtra("PHONE_NUMBER", phoneNumber);
-                                Toast.makeText(EnterSdtActivity.this, "Vui lòng nhập mật khẩu để đăng nhập tài khoản", Toast.LENGTH_SHORT).show();
-                                startActivity(intent);  
-                                
+        db = FirebaseFirestore.getInstance(); // Khởi tạo db ở đây
+        if (phoneNumber.equals("0000000000")) {
+            Intent intent = new Intent(EnterSdtActivity.this, AdminActivity.class);
+            startActivity(intent);
+        } else {
+            db.collection("Users").document(phoneNumber).get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document != null && document.exists()) {
+                                    Boolean isLocked = document.getBoolean("IsLocked");
+                                    if (isLocked != null && isLocked) {
+                                        // Nếu tài khoản bị khóa, hiển thị thông báo và không cho phép đăng nhập
+                                        Toast.makeText(EnterSdtActivity.this, "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ quản trị viên để biết thêm chi tiết.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        // Nếu tài khoản không bị khóa, tiếp tục với quá trình đăng nhập
+                                        Intent loginIntent = new Intent(EnterSdtActivity.this, LoginActivity.class);
+                                        loginIntent.putExtra("PHONE_NUMBER", phoneNumber);
+                                        Toast.makeText(EnterSdtActivity.this, "Vui lòng nhập mật khẩu để đăng nhập tài khoản", Toast.LENGTH_SHORT).show();
+                                        startActivity(loginIntent);
+                                    }
+                                } else {
+                                    // Nếu không có tài khoản, chuyển sang màn hình đăng ký
+                                    // ...
+                                }
                             } else {
-                                Intent intent = new Intent(EnterSdtActivity.this, RegisterActivity.class);
-                                Toast.makeText(EnterSdtActivity.this, "Vui lòng nhập mã OTP để đăng ký tài khoản", Toast.LENGTH_SHORT).show();
-                                intent.putExtra("PHONE_NUMBER", phoneNumber);
-                                intent.putExtra("check2", "ok");
-                                startActivity(intent);
+                                // Xử lý khi truy vấn không thành công
+                                // ...
                             }
-                        } else {
-                            // Error accessing Firestore
-                            Toast.makeText(EnterSdtActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
-    };
+                    });
+        }
+    }
+
 }

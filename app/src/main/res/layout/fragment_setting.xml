@@ -49,14 +49,15 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textSize="24sp"/>
+
                     <TextView
                         android:id="@+id/phoneNumber1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Số điện thoại"
-                        android:textSize="16sp"
                         android:layout_marginLeft="8dp"
-                        android:layout_marginTop="16sp"/>
+                        android:layout_marginTop="16sp"
+                        android:text="Số điện thoại"
+                        android:textSize="16sp" />
                 </LinearLayout>
                 <ImageButton
                     android:layout_width="match_parent"
@@ -308,7 +309,7 @@
         android:id="@+id/out"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:backgroundTint="@color/MomoColor"
+        android:background="@drawable/roundedbutton"
         android:text="Đăng xuất"
         android:textSize="20sp"
         android:layout_marginTop="16dp"

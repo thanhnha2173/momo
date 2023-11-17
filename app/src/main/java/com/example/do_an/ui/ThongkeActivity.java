@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,10 +17,14 @@ import com.example.do_an.R;
 import com.example.do_an.fragment.TransHisFragment;
 import com.example.do_an.model.ThongBaoModel;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -41,8 +46,10 @@ import java.util.Map;
 
 public class ThongkeActivity extends AppCompatActivity {
     private TextView tongchitieu;
-    private LinearLayout lsgdlist;
+    private LinearLayout lsgdlist, btnBackReport;
+    private BarChart barChart;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,31 +57,11 @@ public class ThongkeActivity extends AppCompatActivity {
 
         lsgdlist = findViewById(R.id.lsgdlist);
         tongchitieu = findViewById(R.id.tongchitieu);
-        LinearLayout btnBackReport = findViewById(R.id.btnBackReport);
-        BarChart barChart = findViewById(R.id.barChart);
+        btnBackReport = findViewById(R.id.btnBackReport);
+        barChart = findViewById(R.id.barChart);
         XAxis xAxis = barChart.getXAxis();
         xAxis.setGranularity(1f);
         xAxis.setValueFormatter(new IntergerAxisValueFormatter());
-
-//        lsgdlist.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Tạo một đối tượng fragment
-//                TransHisFragment transHisFragment = new TransHisFragment();
-//
-//                // Bắt đầu một giao dịch Fragment
-//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//
-//                // Thay thế fragment hiện tại bằng TransHisFragment
-//                transaction.replace(R.id.fragment_container, transHisFragment);
-//
-//                // Đặt tên cho transaction (không bắt buộc)
-//                transaction.addToBackStack(null);
-//
-//                // Kết thúc giao dịch
-//                transaction.commit();
-//            }
-//        });
 
         btnBackReport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,6 +151,7 @@ public class ThongkeActivity extends AppCompatActivity {
                         Log.e("FirestoreData", "Error loading data", task.getException());
                     }
                 });
+
     }
 
     public class IntergerAxisValueFormatter extends ValueFormatter {

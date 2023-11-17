@@ -89,8 +89,8 @@
             android:layout_height="wrap_content"
             android:text="Đến ngân hàng"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="16dp"/>
+            android:textSize="16dp"
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"

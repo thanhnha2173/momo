@@ -5,14 +5,16 @@ public class User {
     String MaTTCN;
     long Soduvi;
     long Sodutuithantai;
+    Boolean IsLocked;
 
     public User() {}
 
-    public User(long id, String MaTTCN, long Soduvi, long Sodutuithantai) {
+    public User(long id, String MaTTCN, long Soduvi, long Sodutuithantai, Boolean IsLocked) {
         this.id = id;
         this.MaTTCN = MaTTCN;
         this.Soduvi = Soduvi;
         this.Sodutuithantai = Sodutuithantai;
+        this.IsLocked = IsLocked;
     }
 
     public long getId() {
@@ -45,5 +47,13 @@ public class User {
 
     public void setSodutuithantai(long sodutuithantai) {
         Sodutuithantai = sodutuithantai;
+    }
+
+    public boolean isLocked() {
+        return IsLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        IsLocked = locked;
     }
 }

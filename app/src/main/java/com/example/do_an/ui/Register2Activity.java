@@ -74,7 +74,7 @@ public class Register2Activity extends AppCompatActivity {
                     Toast.makeText(Register2Activity.this, "Mật khẩu phải là 6 chữ số", Toast.LENGTH_SHORT).show();
 
                 } else{
-                    User user = new User(Username, "CN" + Username, 0, 0);
+                    User user = new User(Username, "CN" + Username, 0, 0, false);
                     UserInfo userInfo = new UserInfo("CN" + Username, "", "","","","","", Long.parseLong(String.valueOf(edMK.getText())));
                     saveToFireStore(user, userInfo);
                     Intent intent = new Intent(Register2Activity.this, LoginActivity.class);
@@ -115,6 +115,7 @@ public class Register2Activity extends AppCompatActivity {
         userMap.put("MaTTCN", user.getMaTTCN());
         userMap.put("soDuVi", user.getSoduvi());
         userMap.put("soDuVi2", user.getSodutuithantai());
+        userMap.put("IsLocked", user.isLocked());
         db.collection("Users").document(user.getId()+"").set(userMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

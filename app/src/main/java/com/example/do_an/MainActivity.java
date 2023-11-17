@@ -16,6 +16,7 @@ import com.example.do_an.fragment.HomeFragment;
 
 import com.example.do_an.fragment.SettingFragment;
 import com.example.do_an.fragment.TransHisFragment;
+import com.example.do_an.fragment.UuDaiFragment;
 import com.example.do_an.ui.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
@@ -61,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
                         loadFragment(new HomeFragment());
                         break;
 
-//                    case R.id.mnUuDai:
-//                        loadFragment(new LocalFragment());
-//                        break;
+                    case R.id.mnUuDai:
+                        loadFragment(new UuDaiFragment());
+                        break;
 //
                     case R.id.LSGD:
                         loadFragment(new TransHisFragment());

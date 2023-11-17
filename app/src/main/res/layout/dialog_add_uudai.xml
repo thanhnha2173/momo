@@ -1,0 +1,31 @@
+<!-- dialog_add_uudai.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edit_text_ten_uudai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tên ưu đãi"/>
+
+    <EditText
+        android:id="@+id/edit_text_mo_ta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mô tả chi tiết"/>
+    <EditText
+        android:id="@+id/Url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Url"/>
+
+    <Button
+        android:id="@+id/button_xac_nhan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xác nhận"/>
+</LinearLayout>

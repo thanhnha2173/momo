@@ -179,5 +179,5 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:text="Tạo giao dịch khác"
-        android:backgroundTint="@color/MomoColor"/>
+        android:background="@drawable/roundedbutton"/>
 </LinearLayout>

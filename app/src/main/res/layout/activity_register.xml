@@ -100,7 +100,7 @@
             android:id="@+id/btdnlogin"
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            android:backgroundTint="@color/MomoColor"
+            android:background="@drawable/roundedbutton"
             android:text="Tiếp tục"
             android:textAllCaps="false"
             android:textColor="@color/white"
