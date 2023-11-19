@@ -213,16 +213,16 @@
                 android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"/>
         </LinearLayout>
     </LinearLayout>
-    <Button
-        android:id="@+id/out2"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:backgroundTint="@color/white"
-        android:text="Đăng xuất"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-        />
-</LinearLayout>
+
+        <Button
+            android:id="@+id/out2"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/white"
+            android:text="Đăng xuất"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
     </LinearLayout>

@@ -9,6 +9,8 @@ import android.annotation.SuppressLint;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.do_an.R;
 import com.example.do_an.adapter.TransHisAdapter;
@@ -27,14 +29,23 @@ public class LichSuGiaoDichActivity extends AppCompatActivity {
     private TransHisAdapter adapter;
     private FirebaseFirestore db;
     private List<ThongBaoModel> transactionList;
+    private ImageButton bck_lsgd_admin;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lich_su_giao_dich);
 
+        bck_lsgd_admin = findViewById(R.id.bck_lsgd_admin);
         recyclerView = findViewById(R.id.recycle_lsgd_admin);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        bck_lsgd_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         transactionList = new ArrayList<>();
         adapter = new TransHisAdapter(transactionList);

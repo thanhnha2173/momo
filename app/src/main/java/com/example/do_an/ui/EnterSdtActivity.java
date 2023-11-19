@@ -61,6 +61,7 @@ public class EnterSdtActivity extends AppCompatActivity {
         if (phoneNumber.equals("0000000000")) {
             Intent intent = new Intent(EnterSdtActivity.this, AdminActivity.class);
             startActivity(intent);
+            finishAffinity();
         } else {
             db.collection("Users").document(phoneNumber).get()
                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

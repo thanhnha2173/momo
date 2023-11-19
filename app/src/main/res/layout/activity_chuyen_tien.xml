@@ -173,11 +173,11 @@
         </LinearLayout>
         <Button
             android:id="@+id/btCT"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Chuyển tiền"
-            android:backgroundTint="@color/MomoColor"/>
+            android:background="@drawable/roundedbutton"/>
     </LinearLayout>
 
 </LinearLayout>

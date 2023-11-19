@@ -8,6 +8,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.do_an.R;
@@ -23,6 +25,7 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
     private TextView cccd;
     private TextView email;
     private TextView diachi;
+    private ImageButton bck_ttcn_admin;
 
     private FirebaseFirestore db;
     private String accountId;
@@ -32,12 +35,20 @@ public class ThongTinCaNhanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thong_tin_ca_nhan);
 
+        bck_ttcn_admin = findViewById(R.id.bck_ttcn_admin);
         hoten = findViewById(R.id.hoten_admin);
         gioitinh = findViewById(R.id.gioitinh_admin);
         ngaysinh = findViewById(R.id.ngaysinh_admin);
         cccd = findViewById(R.id.cccd_admin);
         email = findViewById(R.id.email_admin);
         diachi = findViewById(R.id.diachi_admin);
+
+        bck_ttcn_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         db = FirebaseFirestore.getInstance();
 

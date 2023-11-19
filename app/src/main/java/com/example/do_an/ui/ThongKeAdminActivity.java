@@ -7,6 +7,8 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.example.do_an.R;
 import com.github.mikephil.charting.charts.BarChart;
@@ -40,6 +42,7 @@ public class ThongKeAdminActivity extends AppCompatActivity {
 
     private BarChart barChart;
     private PieChart pieChart;
+    private LinearLayout btnBackReport_admin;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +54,17 @@ public class ThongKeAdminActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
+        btnBackReport_admin = findViewById(R.id.btnBackReport_admin);
         pieChart = findViewById(R.id.pieChart);
         barChart = findViewById(R.id.barChart);
+
+        btnBackReport_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         XAxis xAxis = barChart.getXAxis();
         xAxis.setGranularity(1f);
         xAxis.setValueFormatter(new NewAxisValueFormatter());

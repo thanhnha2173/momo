@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.do_an.R;
@@ -21,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class SoDuViActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     TextView soDuTextView;
+    private ImageButton bck_sdv_admin;
     private String accountId;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,6 +40,13 @@ public class SoDuViActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = this.getSharedPreferences("my_phone", Context.MODE_PRIVATE);
         String phoneNumber = sharedPreferences.getString("PHONE_NUMBER", "");
 
+        bck_sdv_admin = findViewById(R.id.bck_sdv_admin);
+        bck_sdv_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         soDuTextView = findViewById(R.id.chitietsodu_admin);
 //        Intent intent = getIntent();
 //        if (intent != null && intent.hasExtra("ACCOUNT_ID")) {
