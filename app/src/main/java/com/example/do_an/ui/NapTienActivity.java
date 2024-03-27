@@ -15,9 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.do_an.R;
-import com.example.do_an.model.UserInfo;
+import com.example.do_an.utils.EnteredState;
+import com.example.do_an.utils.NoEnteredState;
+import com.example.do_an.utils.PaymentState;
+import com.example.do_an.utils.TransactionManager;
+import com.example.do_an.utils.TransactionObserver;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,15 +32,46 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class NapTienActivity extends AppCompatActivity {
-    TextView soduviNT, iddataNT, soduViMomo;
+public class NapTienActivity extends AppCompatActivity implements TransactionObserver {
+    private TextView soduviNT, iddataNT, soduViMomo;
     Button btnt;
     ImageButton backLogin1;
     private String date, hour;
+    private PaymentState currentState; // Trạng thái hiện tại
+
+    public TextView getSoduviNT() {
+        return soduviNT;
+    }
+    public void setSoduviNT(TextView soduviNT) {
+        this.soduviNT = soduviNT;
+    }
+
+    public TextView getiddataNT() {
+        return iddataNT;
+    }
+    public void setiddataNT(TextView iddataNT) {
+        this.iddataNT = iddataNT;
+    }
+
+    public String getdate() {
+        return date;
+    }
+    public String gethour() {
+        return hour;
+    }
+
+    public String getPhoneNumber() {
+        SharedPreferences sharedPreferences = getSharedPreferences("my_phone", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("PHONE_NUMBER", "");
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nap_tien);
+        TransactionManager.getInstance().registerObserver(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         SharedPreferences sharedPreferences = getSharedPreferences("my_phone", Context.MODE_PRIVATE);
@@ -48,31 +82,32 @@ public class NapTienActivity extends AppCompatActivity {
         soduviNT = findViewById(R.id.soduviNT);
         backLogin1 = findViewById(R.id.backLogin1);
         getInfo(phoneNumber);
+
+        // Khởi tạo một state mặc định
+        currentState = new NoEnteredState();
+
         btnt.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SuspiciousIndentation")
             @Override
             public void onClick(View view) {
-                date = getCurrentDateAsString();
-                hour = getCurrentTime();
-                String iddata = iddataNT.getText().toString();
-                String price = soduviNT.getText().toString();
-                if(soduviNT.getText() == null)
-                    Toast.makeText(NapTienActivity.this, "Chưa nhập số tiền cần nạp", Toast.LENGTH_SHORT).show();
-                else{
-                    int sodu = Integer.parseInt(String.valueOf(soduviNT.getText()));
-                    if(sodu < 10000)
-                        Toast.makeText(NapTienActivity.this, "Nạp tối thiểu 10.000đ", Toast.LENGTH_SHORT).show();
-                    else
-                        updateToFireStore(phoneNumber,sodu);
-                        updateNotification(iddata, price, date, hour);
-                }
+                // Gọi phương thức xử lý của state hiện tại
+                currentState.handleInput(NapTienActivity.this);
             }
         });
+
         backLogin1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {finish();}
         });
+    }
 
+    // Phương thức để cập nhật trạng thái
+    public void setCurrentState(PaymentState state) {
+        this.currentState = state;
+    }
+
+    // Phương thức để lấy trạng thái hiện tại (cho mục đích kiểm tra)
+    public PaymentState getCurrentState() {
+        return currentState;
     }
     private String getCurrentDateAsString() {
         // Lấy ngày và giờ hiện tại
@@ -94,14 +129,10 @@ public class NapTienActivity extends AppCompatActivity {
 
         return currentTime;
     }
-    private void updateToFireStore(String id, int sodu) {
-        FirebaseFirestore db;
-        db = FirebaseFirestore.getInstance();
-
-        // Tạo một tham chiếu đến tài khoản người dùng cần cập nhật
+    public void updateToFireStore(String id, int sodu) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference userRef = db.collection("Users").document(id);
 
-        // Lấy dữ liệu hiện tại từ Firestore
         userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -110,15 +141,18 @@ public class NapTienActivity extends AppCompatActivity {
                     if (document.exists()) {
                         long currentSoDu = document.getLong("soDuVi").intValue();
                         long newSoDu = currentSoDu + sodu;
+
                         // Cập nhật số dư mới vào Firestore
                         userRef.update("soDuVi", newSoDu)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(NapTienActivity.this, "Nạp tiền thành công", Toast.LENGTH_SHORT).show();
+                                            // Gọi phương thức thông báo nạp tiền thành công
+                                            TransactionManager.getInstance().notifyRechargeSuccess();
                                         } else {
-                                            Toast.makeText(NapTienActivity.this, "Lỗi khi nạp tiền: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            // Gọi phương thức thông báo lỗi nạp tiền
+                                            TransactionManager.getInstance().notifyRechargeFailure(task.getException().getMessage());
                                         }
                                     }
                                 });
@@ -130,6 +164,18 @@ public class NapTienActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void notifyRechargeSuccess() {
+        // Xử lý thông báo khi nạp tiền thành công ở đây
+        Toast.makeText(NapTienActivity.this, "Nạp tiền thành công", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void notifyRechargeFailure(String errorMessage) {
+        // Xử lý thông báo khi nạp tiền thất bại ở đây
+        Toast.makeText(NapTienActivity.this, "Lỗi khi nạp tiền: " + errorMessage, Toast.LENGTH_SHORT).show();
     }
 
     void getInfo(String phoneNumber) {
@@ -153,7 +199,7 @@ public class NapTienActivity extends AppCompatActivity {
                 });
     }
 
-    private void updateNotification(String titletran, String pricetran, String date, String hour){
+    public void updateNotification(String titletran, String pricetran, String date, String hour){
         String formatedPrice = formatCurrencyFromString(pricetran);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -165,10 +211,8 @@ public class NapTienActivity extends AppCompatActivity {
 
         db.collection("TransactionInfo").add(notificationMap)
                 .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(NapTienActivity.this, "Thông tin đã được đẩy lên Firebase", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(NapTienActivity.this, "Lỗi khi đẩy thông tin lên Firebase: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
     public String formatCurrency(int amount) {

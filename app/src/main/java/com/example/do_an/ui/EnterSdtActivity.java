@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +60,7 @@ public class EnterSdtActivity extends AppCompatActivity {
     }
     void checkPhone(String phoneNumber){
         db = FirebaseFirestore.getInstance(); // Khởi tạo db ở đây
+        Log.d("FirebaseTest", "Firebase instance initialized");
         if (phoneNumber.equals("0000000000")) {
             Intent intent = new Intent(EnterSdtActivity.this, AdminActivity.class);
             startActivity(intent);
@@ -68,6 +71,7 @@ public class EnterSdtActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             if (task.isSuccessful()) {
+                                Log.d("FirebaseTest", "Firebase query successful");
                                 DocumentSnapshot document = task.getResult();
                                 if (document != null && document.exists()) {
                                     Boolean isLocked = document.getBoolean("IsLocked");
@@ -82,12 +86,18 @@ public class EnterSdtActivity extends AppCompatActivity {
                                         startActivity(loginIntent);
                                     }
                                 } else {
-                                    // Nếu không có tài khoản, chuyển sang màn hình đăng ký
-                                    // ...
+                                    Intent intent = new Intent(EnterSdtActivity.this, RegisterActivity.class);
+                                    Toast.makeText(EnterSdtActivity.this, "Vui lòng nhập mã OTP để đăng ký tài khoản", Toast.LENGTH_SHORT).show();
+                                    intent.putExtra("PHONE_NUMBER", phoneNumber);
+                                    intent.putExtra("check2", "ok");
+                                    startActivity(intent);
                                 }
                             } else {
+                                Log.e("FirebaseTest", "Firebase query failed: " + task.getException());
                                 // Xử lý khi truy vấn không thành công
                                 // ...
+                                // Error accessing Firestore
+                                Toast.makeText(EnterSdtActivity.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

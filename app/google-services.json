@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "959576787248",
-    "project_id": "momoproject-afa0c",
-    "storage_bucket": "momoproject-afa0c.appspot.com"
+    "project_number": "491431172491",
+    "project_id": "momofn-51b68",
+    "storage_bucket": "momofn-51b68.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:959576787248:android:6a15d07870b0933e6fe0f5",
+        "mobilesdk_app_id": "1:491431172491:android:2a46f8a4b68ed020ed378e",
         "android_client_info": {
           "package_name": "com.example.do_an"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAqPBnVI4Eo8_vvE_FFVqqQSKVNOZ42lXE"
+          "current_key": "AIzaSyBQOiz1CPIxiiX1FJukA6Na6rhPoSybctM"
         }
       ],
       "services": {
