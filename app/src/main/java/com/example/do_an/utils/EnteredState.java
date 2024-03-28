@@ -16,7 +16,7 @@ public class EnteredState implements PaymentState {
             } else {
                 // Tiếp tục xử lý logic nạp tiền
                 activity.updateToFireStore(activity.getPhoneNumber(), sodu);
-                activity.updateNotification(activity.getiddataNT().getText().toString().trim(), soduviNTText, activity.getdate(), activity.gethour());
+                activity.updateNotification(activity.getiddataNT().getText().toString().trim(), soduviNTText, activity.getCurrentDateAsString(), activity.getCurrentTime());
             }
         } else{
             // Nếu số tiền đủ điều kiện, chuyển trạng thái sang EnteredState

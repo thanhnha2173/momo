@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.do_an.R;
-import com.example.do_an.utils.EnteredState;
+import com.example.do_an.utils.ConfirmationDecorator;
 import com.example.do_an.utils.NoEnteredState;
 import com.example.do_an.utils.PaymentState;
 import com.example.do_an.utils.TransactionManager;
@@ -49,23 +48,11 @@ public class NapTienActivity extends AppCompatActivity implements TransactionObs
     public TextView getiddataNT() {
         return iddataNT;
     }
-    public void setiddataNT(TextView iddataNT) {
-        this.iddataNT = iddataNT;
-    }
-
-    public String getdate() {
-        return date;
-    }
-    public String gethour() {
-        return hour;
-    }
 
     public String getPhoneNumber() {
         SharedPreferences sharedPreferences = getSharedPreferences("my_phone", Context.MODE_PRIVATE);
         return sharedPreferences.getString("PHONE_NUMBER", "");
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,12 +71,14 @@ public class NapTienActivity extends AppCompatActivity implements TransactionObs
         getInfo(phoneNumber);
 
         // Khởi tạo một state mặc định
-        currentState = new NoEnteredState();
+        // Trong class NapTienActivity
+        // Khởi tạo ConfirmationDecorator với NoEnteredState và chính instance của NapTienActivity
+        currentState = new ConfirmationDecorator(new NoEnteredState(), this);
 
         btnt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Gọi phương thức xử lý của state hiện tại
+                // Gọi phương thức xử lý của state hiện tại (đã được đính kèm chức năng xác nhận)
                 currentState.handleInput(NapTienActivity.this);
             }
         });
@@ -100,7 +89,6 @@ public class NapTienActivity extends AppCompatActivity implements TransactionObs
         });
     }
 
-    // Phương thức để cập nhật trạng thái
     public void setCurrentState(PaymentState state) {
         this.currentState = state;
     }
@@ -109,7 +97,7 @@ public class NapTienActivity extends AppCompatActivity implements TransactionObs
     public PaymentState getCurrentState() {
         return currentState;
     }
-    private String getCurrentDateAsString() {
+    public String getCurrentDateAsString() {
         // Lấy ngày và giờ hiện tại
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
